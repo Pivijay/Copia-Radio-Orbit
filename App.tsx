@@ -3,7 +3,6 @@ import React, { useState, useCallback, useEffect } from 'react';
 import GlobeViz from './components/GlobeViz';
 import StationList from './components/StationList';
 import Player from './components/Player';
-import AIAssistant from './components/AIAssistant';
 import { getStationsByCountry, searchGlobalStations } from './services/radioApi';
 import { Station, FilterState, Recording } from './types';
 import { Radio } from 'lucide-react';
@@ -91,20 +90,6 @@ const App: React.FC = () => {
       setFilter(prev => ({ ...prev, city: null }));
   };
 
-  const handleAiSearch = async (query: string) => {
-    setLoading(true);
-    setIsSidebarOpen(true);
-    setFilter(prev => ({ ...prev, countryName: 'AI RESULTS', countryCode: 'AI' }));
-    try {
-      const data = await searchGlobalStations(query);
-      setStations(data);
-    } catch (err) {
-      console.error("AI search failed", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="relative w-full h-screen bg-slate-950 overflow-hidden flex flex-col font-rajdhani">
       <GlobeViz 
@@ -124,8 +109,6 @@ const App: React.FC = () => {
           GLOBAL FREQUENCY TUNER
         </p>
       </div>
-
-      <AIAssistant onAiSearch={handleAiSearch} />
 
       {!isSidebarOpen && !selectedStation && (
         <div className="absolute bottom-32 left-0 right-0 text-center pointer-events-none z-20 animate-pulse px-4">
