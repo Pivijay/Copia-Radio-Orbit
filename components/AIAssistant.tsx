@@ -1,7 +1,2 @@
-
-import React from 'react';
-// Componente desactivado
-const AIAssistant: React.FC<any> = () => {
-  return null;
-};
-export default AIAssistant;
+// This component is deprecated as AI features have been removed.
+export default function AIAssistant() { return null; }

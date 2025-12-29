@@ -1,5 +1,2 @@
-
-// Este servicio ha sido desactivado.
-export const askGemini = async () => {
-  return null;
-};
+// This file is deprecated as AI features have been removed.
+export {};
